@@ -16,14 +16,10 @@ function displayShowInfo() {
           
 
         var showDiv = $("<div class='show'>");
-
         var rating= response.rating;
-
         var pUno= $("<p>").text("Rating: " + rating);
 
         showDiv.prepend(pUno);
-        
-
         var imgURL = response.data;
 
           // Creating an element to hold the image
@@ -35,20 +31,10 @@ function displayShowInfo() {
           // Putting the entire movie above the previous movies
           $("#showButtons").prepend(image);
           
-};
+}
 })
 
-
-   //YOU NEED AN ON-CLICK EVENT HERE FOR YOUR SUBMIT BUTTON (DUH)
-    $("#addShow").on("click", function(event) {
-        event.preventDefault();
-        displayShowInfo();
-        
-
-   
-
-   
-        function makeButtons() {
+    function makeButtons() {
         // Deleting the movies prior to adding new shows
         
         // (this is necessary otherwise you will have repeat buttons)
@@ -66,6 +52,8 @@ function displayShowInfo() {
           a.attr("data-name", shows[i]);
           // Providing the initial button text
           a.text(shows[i]);
+
+          a.on("click", displayShowInfo);
           // Adding the button to the buttons-view div
           $("#buttons-view").append(a);
         }
@@ -73,6 +61,7 @@ function displayShowInfo() {
 
       $("#addShow").on("click", function(event) {
         event.preventDefault();
+       
         // This line grabs the input from the textbox
         var show = $("#show-input").val().trim();
 
@@ -88,3 +77,4 @@ function displayShowInfo() {
       // Calling the renderButtons function to display the intial buttons
       makeButtons();
     });
+        
